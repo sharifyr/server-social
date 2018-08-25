@@ -12,6 +12,9 @@
     "start": "npm run build && node ./dist/src/index.js",
     "test": "set NODE_ENV=TEST && nyc --extension .ts --extension .tsx mocha --timeout 10000 -r ts-node/register ./test/*.ts && nyc report --reporter text-lcov --extension .ts --extension .tsx | coveralls"
   },
+  "engines": {
+    "node": "8.11.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/KyleGalvin/backendBoilerplate.git"
