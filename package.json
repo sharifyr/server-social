@@ -10,8 +10,7 @@
     "local": "nodemon -e ts -w ./src -x npm run local:watch",
     "local:watch": "npm run build && npm run lint && cat ./tslint.err && npm run build && node --inspect ./dist/src/index.js",
     "start": "npm run build && node ./dist/src/index.js",
-    "test": "set NODE_ENV=TEST && nyc --extension .ts --extension .tsx mocha --timeout 10000 -r ts-node/register ./test/*.ts && nyc report --reporter text-lcov --extension .ts --extension .tsx | coveralls",
-    "test-watch": "npm run clean && mocha-typescript-watch -p tsconfig.json -o ./mocha.opts"
+    "test": "set NODE_ENV=TEST && nyc --extension .ts --extension .tsx mocha --timeout 10000 -r ts-node/register ./test/*.ts && nyc report --reporter text-lcov --extension .ts --extension .tsx | coveralls"
   },
   "repository": {
     "type": "git",
@@ -28,7 +27,7 @@
     "mkdirp": "^0.5.1",
     "mocha": "^5.0.5",
     "mocha-lcov-reporter": "^1.3.0",
-    "mocha-typescript": "^1.1.12",
+    "mocha-typescript": "1.1.12",
     "nodemon": "^1.12.1",
     "nyc": "^11.3.0",
     "rimraf": "^2.6.2",
