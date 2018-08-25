@@ -12,6 +12,7 @@ import * as vision from "vision";
 
 import IoC from "./dependencyResolution/IoC";
 // import "./controllers/swagger";
+import registerRoot from "./controllers/hapi/root";
 import registerGroup from "./controllers/hapi/group";
 import registerContactRequests from "./controllers/hapi/contactRequest";
 import registerUsers from "./controllers/hapi/user";
@@ -57,6 +58,7 @@ const start = async () => {
       "verifyOptions": { "algorithms": [ "HS256" ] }
     });
 
+    registerRoot(server);
     registerGroup(server);
     registerContactRequests(server);
     registerUsers(server);

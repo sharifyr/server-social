@@ -1,7 +1,7 @@
 ## Backend Status
 
 [![Build Status](https://travis-ci.org/sharifyr/server-social.svg?branch=master)](https://github.com/sharifyr/server-social)
-[![Coverage Status](https://coveralls.io/repos/github/KyleGalvin/backendBoilerplate/badge.svg?branch=master)](https://coveralls.io/github/KyleGalvin/backendBoilerplate?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/sharifyr/server-social/badge.svg?branch=master)](https://coveralls.io/github/sharifyr/server-social?branch=master)
 [![Known Vulnerabilities](https://snyk.io/test/github/kylegalvin/backendboilerplate/badge.svg)](https://snyk.io/test/github/kylegalvin/backendboilerplate)
 [![Dependencies Status](https://david-dm.org/KyleGalvin/backendBoilerplate.svg)](https://david-dm.org/KyleGalvin/backendBoilerplate)
 [![devDependencies Status](https://david-dm.org/KyleGalvin/backendBoilerplate/dev-status.svg)](https://david-dm.org/KyleGalvin/backendBoilerplate?type=dev)
