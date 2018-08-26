@@ -17,7 +17,7 @@ export default (server: Hapi.Server) => {
       const userController = new UserController();
       return userController.update(request.payload as IUserSerialized);
     }
-  });
+  } as Hapi.ServerRoute);
   server.route({
     "method": "GET",
     "path": basePath + "/{id}",
@@ -31,7 +31,7 @@ export default (server: Hapi.Server) => {
       const userController = new UserController();
       return userController.read(parseInt(request.params.id, 10));
     }
-  });
+  } as Hapi.ServerRoute);
   server.route({
     "method": "DELETE",
     "path": basePath + "/{id}",
@@ -45,7 +45,7 @@ export default (server: Hapi.Server) => {
       const userController = new UserController();
       return userController.delete(parseInt(request.params.id, 10));
     }
-  });
+  } as Hapi.ServerRoute);
   server.route({
     "method": "PUT",
     "path": basePath + "/signup",
@@ -59,7 +59,7 @@ export default (server: Hapi.Server) => {
       const userController = new UserController();
       return userController.signup(request.payload as IUserSerialized);
     }
-  });
+  } as Hapi.ServerRoute);
   server.route({
     "method": "PUT",
     "path": basePath + "/login",
@@ -73,5 +73,5 @@ export default (server: Hapi.Server) => {
       const userController = new UserController();
       return userController.login(request.payload as IUserCredentials);
     }
-  });
+  } as Hapi.ServerRoute);
 };

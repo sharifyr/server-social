@@ -18,5 +18,5 @@ export default (server: Hapi.Server) => {
         "status": "online"
       };
     }
-  });
+  } as Hapi.ServerRoute);
 };

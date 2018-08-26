@@ -21,7 +21,7 @@ export default (server: Hapi.Server) => {
       const groupController = new GroupController();
       return await groupController.update(request.payload as IGroupSerialized);
     }
-  });
+  } as Hapi.ServerRoute);
   server.route({
     "method": "PUT",
     "path":  basePath + "",
@@ -37,7 +37,7 @@ export default (server: Hapi.Server) => {
       const userId = jwtToId(request.headers.authorization);
       groupController.saveGroup(userId, group);
     }
-  });
+  } as Hapi.ServerRoute);
   server.route({
     "method": "GET",
     "path": basePath + "",
@@ -52,7 +52,7 @@ export default (server: Hapi.Server) => {
       const userId = jwtToId(request.headers.authorization);
       return await groupController.getGroups(userId);
     }
-  });
+  } as Hapi.ServerRoute);
   server.route({
     "method": "DELETE",
     "path": basePath + "/{id}",
@@ -66,5 +66,5 @@ export default (server: Hapi.Server) => {
       const groupController = new GroupController();
       groupController.deleteById(parseInt(request.params.id, 10));
     }
-  });
+  } as Hapi.ServerRoute);
 };
