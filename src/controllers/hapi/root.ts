@@ -2,7 +2,7 @@ import * as Hapi from "hapi";
 
 export default (server: Hapi.Server) => {
 
-  const basePath = "/";
+  const basePath = "/Service";
 
   server.route({
     "method": "GET",

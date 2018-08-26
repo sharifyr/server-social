@@ -16,7 +16,7 @@ export interface ISSLOptions {
 
 export interface IConfig {
   "domain": string;
-  "origin": string;
+  "clientOrigin": string;
   "database": "mysql" | "mariadb" | "postgres" | "sqlite" | "mssql"
     | "oracle" | "websql" | "cordova" | "sqljs" | "mongodb";
   "connectionString": string;
@@ -32,7 +32,7 @@ if (process && process.env && process.env.NODE_ENV) {
     defaultConfig.connectionString =  process.env.DATABASE_URL as string;
     defaultConfig.port = Number(process.env.PORT as string);
     defaultConfig.domain = "0.0.0.0" as string;
-    defaultConfig.origin = (process.env.ORIGIN as string);
+    defaultConfig.clientOrigin = (process.env.ORIGIN as string);
   }
 
   if (env === "TEST") {

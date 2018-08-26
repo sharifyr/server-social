@@ -37,13 +37,13 @@ const start = async () => {
         "cors": {
           "headers": ["Accept", "Authorization", "Content-Type", "Access-Control-Allow-Origin"],
           "origin": [
-            config.origin
+            config.clientOrigin
           ]
         }
       }
     });
 
-    logger.info("origin registered as ", config.origin);
+    logger.info("clientOrigin registered as ", config.clientOrigin);
 
     await server.register([
       HapiJwt,
