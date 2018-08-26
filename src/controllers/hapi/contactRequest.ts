@@ -23,7 +23,7 @@ export default (server: Hapi.Server) => {
       const userId = jwtToId(request.headers.authorization);
       contactRequestController.getContactRequests(userId);
     }
-  });
+  } as Hapi.ServerRoute);
   server.route({
     "method": "PUT",
     "path": basePath + "/request/{userId}",
@@ -39,7 +39,7 @@ export default (server: Hapi.Server) => {
       const toUserId = parseInt(request.params.userId, 10);
       contactRequestController.sendContactRequest(fromUserId, toUserId);
     }
-  });
+  } as Hapi.ServerRoute);
   server.route({
     "method": "POST",
     "path": basePath + "/accept/{requestId}",
@@ -53,7 +53,7 @@ export default (server: Hapi.Server) => {
       const contactRequestController = new ContactRequestController();
       contactRequestController.acceptContactRequest(parseInt(request.params.requestId, 10));
     }
-  });
+  } as Hapi.ServerRoute);
   server.route({
     "method": "POST",
     "path": basePath + "/reject/{requestId}",
@@ -67,5 +67,5 @@ export default (server: Hapi.Server) => {
       const contactRequestController = new ContactRequestController();
       contactRequestController.rejectContactRequest(parseInt(request.params.requestId, 10));
     }
-  });
+  } as Hapi.ServerRoute);
 };
