@@ -16,6 +16,7 @@ export interface ISSLOptions {
 
 export interface IConfig {
   "domain": string;
+  "origin": string;
   "database": "mysql" | "mariadb" | "postgres" | "sqlite" | "mssql"
     | "oracle" | "websql" | "cordova" | "sqljs" | "mongodb";
   "connectionString": string;
@@ -27,9 +28,11 @@ export interface IConfig {
 if (process && process.env && process.env.NODE_ENV) {
   const env = (process.env.NODE_ENV as string).trim();
   if (env === "DEV") {
+    // currently using this on a heroku deployment
     defaultConfig.connectionString =  process.env.DATABASE_URL as string;
     defaultConfig.port = Number(process.env.PORT as string);
     defaultConfig.domain = "0.0.0.0" as string;
+    defaultConfig.origin = (process.env.ORIGIN as string);
   }
 
   if (env === "TEST") {
