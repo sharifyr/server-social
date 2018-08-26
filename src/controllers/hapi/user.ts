@@ -1,7 +1,7 @@
 import * as Hapi from "hapi";
 
 import jwtToId from "../../util/jwt";
-import { UserController } from "../User";
+import { UserController } from "../user";
 import {IUserSerialized} from "../../models/entities/IUserSerialized";
 import {IUserCredentials} from "../../models/entities/user";
 
