@@ -29,6 +29,7 @@ if (process && process.env && process.env.NODE_ENV) {
   if (env === "DEV") {
     defaultConfig.connectionString =  process.env.DATABASE_URL as string;
     defaultConfig.port = Number(process.env.PORT as string);
+    defaultConfig.domain = "0.0.0.0" as string;
   }
 
   if (env === "TEST") {

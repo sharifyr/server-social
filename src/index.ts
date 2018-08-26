@@ -62,7 +62,6 @@ const start = async () => {
     registerGroup(server);
     registerContactRequests(server);
     registerUsers(server);
-    // registerSwagger(server);
 
     server.auth.default("jwt");
     await server.start();
