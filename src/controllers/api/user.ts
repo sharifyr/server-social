@@ -1,16 +1,9 @@
-import * as express from "express";
 import {Inject} from "typescript-ioc";
-import * as Hapi from "hapi";
 
-import {config} from "../config";
-import {UserProvider} from "../providers/user";
-import {IUserProvider} from "../providers/IUserProvider";
-import {UserFactory} from "../factories/user";
-import {AuthProvider, IAccessToken} from "../providers/auth";
-import {IAuthProvider} from "../providers/IAuthProvider";
-import {IUserCredentials} from "../models/entities/user";
-import {IUserSerialized} from "../models/entities/IUserSerialized";
-import {ISignupResponse} from "../models/entities/ISignupResponse";
+import {IUserProvider} from "../../providers/IUserProvider";
+import {IAuthProvider} from "../../providers/IAuthProvider";
+import {IUserCredentials} from "../../models/entities/user";
+import {IUserSerialized} from "../../models/entities/IUserSerialized";
 
 export class UserController {
 
@@ -27,6 +20,11 @@ export class UserController {
   public async read(userId: number) {
     const user = await this.userProvider.getById(userId);
     return IUserProvider.serialize(user);
+  }
+
+  public async readList() {
+    const users = await this.userProvider.getList();
+    return users.map((u) => IUserProvider.serialize(u));
   }
 
   public async delete(userId: number) {

@@ -3,7 +3,7 @@ import * as jwt from "jsonwebtoken";
 import { IConfig, config } from "./config";
 
 export function expressAuthentication(request: express.Request, securityName: string, scopes?: string[]): Promise<any> {
-  if (securityName === "jwt") {
+  if (securityName === "JWT") {
     const token = request.body.token
       || request.query.token
       || request.headers["x-access-token"]

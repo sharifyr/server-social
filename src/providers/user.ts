@@ -106,6 +106,14 @@ export class UserProvider implements IUserProvider {
     return user;
   }
 
+  public async getList() {
+    const users = await this.repository
+      .createQueryBuilder("users")
+      .leftJoinAndSelect("users.contacts", "contacts")
+      .getMany();
+    return users;
+  }
+
   // delete user
   public async deleteById(id: number) {
     return await this.repository.delete(id);

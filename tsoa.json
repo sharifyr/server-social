@@ -1,6 +1,6 @@
 {
     "swagger": {
-        "outputDirectory": "./dist",
+        "outputDirectory": "./dist/src",
         "entryFile": "./src/index.ts",
         "host": "localhost:3000",
         "securityDefinitions": {

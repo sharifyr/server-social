@@ -3,15 +3,9 @@ import {Provides, Inject} from "typescript-ioc";
 import {Repository, Connection} from "typeorm";
 
 import {Group, IGroupSerialized} from "../models/entities/group";
-import {IGroup} from "../models/entities/IGroup";
-import {User} from "../models/entities/user";
-import {IUser} from "../models/entities/IUser";
-import {IUserSerialized} from "../models/entities/IUserSerialized";
 import {GroupFactory} from "../factories/group";
 import {IConfig, config} from "../config";
 import {ILogger, Logger} from "../util/logger";
-import {UserController} from "../controllers/user";
-import {UserProvider} from "./user";
 import {IUserProvider} from "./IUserProvider";
 import {IGroupProvider} from "./IGroupProvider";
 

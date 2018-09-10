@@ -1,14 +1,10 @@
 import * as path from "path";
 import {Inject} from "typescript-ioc";
-import * as Hapi from "hapi";
 
-import {Logger} from "../util/logger";
-import {IConfig, config} from "../config";
-import {Group, IGroupSerialized} from "../models/entities/group";
-import {IGroup} from "../models/entities/IGroup";
-import {IUserProvider} from "../providers/IUserProvider";
-import {IGroupProvider} from "../providers/IGroupProvider";
-import jwtToId from "../util/jwt";
+import {Logger} from "../../util/logger";
+import {IGroupSerialized} from "../../models/entities/group";
+import {IUserProvider} from "../../providers/IUserProvider";
+import {IGroupProvider} from "../../providers/IGroupProvider";
 
 const logger = Logger(path.basename(__filename));
 

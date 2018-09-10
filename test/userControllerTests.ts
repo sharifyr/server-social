@@ -2,19 +2,13 @@ import "reflect-metadata";
 import * as path from "path";
 import * as assert from "assert";
 import { suite, test, slow, timeout } from "mocha-typescript";
-import * as uuid from "uuid";
 
-import {User} from "../src/models/entities/user";
-import {IUser} from "../src/models/entities/IUser";
 import {IUserSerialized} from "../src/models/entities/IUserSerialized";
-import {UserFactory} from "../src/factories/user";
-import {config} from "../src/config";
 import {Logger} from "../src/util/logger";
 import IoC from "../src/dependencyResolution/IoC";
 import {Fixture} from "./fixture";
 import {Container} from "typescript-ioc";
 import {Connection} from "typeorm";
-import { UserController } from "../src/controllers/user";
 
 const logger = Logger(path.basename(__filename));
 IoC.configure();

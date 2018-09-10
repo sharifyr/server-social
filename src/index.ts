@@ -1,25 +1,20 @@
 import * as path from "path";
-import * as bodyParser from "body-parser";
-import * as http from "http";
-import * as cors from "cors";
 import {Container} from "typescript-ioc";
 import {Connection} from "typeorm";
-import * as Hapi from "hapi";
-import * as HapiJwt from "hapi-auth-jwt2";
-import * as HapiSwagger from "hapi-swagger";
-import * as inert from "inert";
-import * as vision from "vision";
+import * as express from "express";
+import * as http from "http";
+import * as bodyParser from "body-parser";
+import * as cors from "cors";
 
 import IoC from "./dependencyResolution/IoC";
-// import "./controllers/swagger";
-import registerRoot from "./controllers/hapi/root";
-import registerGroup from "./controllers/hapi/group";
-import registerContactRequests from "./controllers/hapi/contactRequest";
-import registerUsers from "./controllers/hapi/user";
-// import registerSwagger from "./controllers/hapi/swagger";
 import { config } from "./config";
 import { Logger } from "./util/logger";
-import { ConnectionProvider } from "./models/typeorm";
+import {RegisterRoutes} from "./routes";
+
+import "./controllers/tsoa/user";
+import "./controllers/tsoa/contactRequest";
+import "./controllers/tsoa/group";
+import "./controllers/tsoa/swagger";
 
 const logger = Logger(path.basename(__filename));
 
@@ -30,44 +25,16 @@ const connection = Container.get(Connection);
 const start = async () => {
 
   try {
-    const server = new Hapi.Server({
-      "host": config.domain,
-      "port": config.port,
-      "routes": {
-        "cors": {
-          "headers": ["Accept", "Authorization", "Content-Type", "Access-Control-Allow-Origin"],
-          "origin": [
-            config.clientOrigin
-          ]
-        }
-      }
-    });
+    const app = express();
+    app.use(bodyParser.json({ "type": "application/json"}));
+    app.use(bodyParser.urlencoded({ "extended": true }));
+    app.use(cors());
 
-    logger.info("clientOrigin registered as ", config.clientOrigin);
+    RegisterRoutes(app);
 
-    await server.register([
-      HapiJwt,
-      inert,
-      vision,
-      HapiSwagger
-    ]);
+    const server = http.createServer(app  as (req: any, res: any) => void);
+    server.listen(config.port, () => logger.info("Listening on port " + config.port));
 
-    server.auth.strategy("jwt", "jwt",
-    { "key": config.jwt.secret,
-      "validate": () => {
-        return {"isValid": true};
-      },
-      "verifyOptions": { "algorithms": [ "HS256" ] }
-    });
-
-    registerRoot(server);
-    registerGroup(server);
-    registerContactRequests(server);
-    registerUsers(server);
-
-    server.auth.default("jwt");
-    await server.start();
-    logger.info("Server running at:", server.info.uri);
   } catch (err) {
       logger.error(err);
       process.exit(1);

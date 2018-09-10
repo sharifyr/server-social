@@ -2,8 +2,8 @@ import {Inject} from "typescript-ioc";
 import * as uuid from "uuid";
 
 import {IUserSerialized} from "../src/models/entities/IUserSerialized";
-import {UserController} from "../src/controllers/user";
-import {ContactRequestController} from "../src/controllers/contactRequest";
+import {UserController} from "../src/controllers/api/user";
+import {ContactRequestController} from "../src/controllers/api/contactRequest";
 
 export class Fixture {
 

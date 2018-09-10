@@ -7,6 +7,7 @@ export abstract class IUserProvider {
   public create!: (userData: IUserSerialized) => Promise<IUser>;
   public update!: (userData: IUserSerialized, password?: string) => Promise<IUser>;
   public getById!: (id: number) => Promise<IUser>;
+  public getList!: () => Promise<IUser[]>;
   public deleteById!: (id: number) => Promise<DeleteResult>;
   public static serialize(user: IUser): IUserSerialized {
     return {
