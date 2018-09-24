@@ -33,6 +33,11 @@ export class ContactRequestProvider implements IContactRequestProvider {
     if (!fromUser || !toUser) {
       throw new Error("user does not exist. cannot create contact request");
     }
+    const existingContactRequest = await this.getById(fromUserId, toUserId);
+    if (existingContactRequest !== undefined) {
+      logger.info({"obj": existingContactRequest}, "existingContactRequest: ");
+      return IContactRequestProvider.serialize(existingContactRequest);
+    }
     const contactRequest = this.contactRequestFactory.Create(fromUser, toUser);
     const savedContactRequest = await this.repository.save(contactRequest);
     return IContactRequestProvider.serialize(savedContactRequest);
@@ -84,5 +89,15 @@ export class ContactRequestProvider implements IContactRequestProvider {
       .where("(contactRequest.toUser = :id OR contactRequest.fromUser = :id)", {"id": userId})
       .getMany();
     return contactRequests.map((c) => IContactRequestProvider.serialize(c));
+  }
+
+  private async getById(fromId: number, toId: number) {
+    const request = await this.repository
+    .createQueryBuilder("contactRequest")
+      .leftJoinAndSelect("contactRequest.fromUser", "fromUser")
+      .leftJoinAndSelect("contactRequest.toUser", "toUser")
+      .where("(contactRequest.toUser = :toId AND contactRequest.fromUser = :fromId)", {"toId": toId, "fromId": fromId})
+      .getOne();
+    return request;
   }
 }

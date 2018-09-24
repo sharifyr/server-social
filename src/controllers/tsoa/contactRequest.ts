@@ -12,16 +12,16 @@ export class TsoaContactRequestController {
     @Inject
     private contactRequestProvider!: IContactRequestProvider;
 
-    @Get("")
+    @Put("requests/{userId}")
+    @Security("JWT", ["user"])
+    public async createContactRequest(@Request() request: IJwtRequest, userId: number): Promise<IContactRequestSerialized> {
+      return await this.contactRequestProvider.sendContactRequest(request.user.id as number, userId);
+    }
+
+    @Get("requests")
     @Security("JWT", ["user"])
     public async getContactRequests(@Request() request: IJwtRequest): Promise<IContactRequestSerialized[]> {
       return await this.contactRequestProvider.getContactRequests(request.user.id as number);
-    }
-
-    @Post("request/{userId}")
-    @Security("JWT", ["user"])
-    public async sendContactRequest(@Request() request: IJwtRequest, userId: number): Promise<IContactRequestSerialized> {
-      return await this.contactRequestProvider.sendContactRequest(request.user.id as number, userId);
     }
 
     @Put("accept/{requestId}")
