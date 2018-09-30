@@ -1,5 +1,7 @@
+import {IUserSerialized} from "./IUserSerialized";
+
 export interface IContactRequestSerialized {
   id: number;
-  fromUser: number;
-  toUser: number;
+  fromUser: IUserSerialized;
+  toUser: IUserSerialized;
 }
