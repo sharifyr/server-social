@@ -33,6 +33,7 @@ This application pairs out of the box with a corresponding frontend project host
 ## Requirements:
 
 node v8.x
+node-gyp and python (for bcrypt). Instructions [![here](https://github.com/nodejs/node-gyp)]
 
 ## To install this project:
 
