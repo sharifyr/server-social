@@ -4,7 +4,7 @@ export default {
   "domain": "localhost",
   "clientOrigin": "localhost",
   "database": "postgres",
-  "connectionString": "postgresql://sharifyr:sharifyrpassword@localhost/sharifyr",
+  "connectionString": "postgresql://sharifyr:sharifyrpassword@db/sharifyr",
   "port": 3000,
   "logLevel": "info",
   "jwt": {
