@@ -1,0 +1,14 @@
+version: '3'
+services:
+        client:
+                image: kyle/client-main
+                ports: 
+                - "80:80"
+        service:
+                image: kyle/sharifyr-social
+                ports: 
+                - "3000:3000"
+        db:
+                image: postgres
+                ports: 
+                - "5432:5432"
