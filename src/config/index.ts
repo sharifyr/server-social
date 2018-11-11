@@ -14,6 +14,11 @@ export interface ISSLOptions {
   "passphrase": string;
 }
 
+export interface ILogstashOptions {
+  "host": string;
+  "port": number;
+}
+
 export interface IConfig {
   "domain": string;
   "clientOrigin": string;
@@ -24,6 +29,7 @@ export interface IConfig {
   "logLevel": string;
   "jwt": IJWT;
   "sslOptions": ISSLOptions;
+  "logstash": ILogstashOptions;
 }
 if (process && process.env && process.env.NODE_ENV) {
   const env = (process.env.NODE_ENV as string).trim();

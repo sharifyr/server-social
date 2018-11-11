@@ -28,6 +28,7 @@ export class AuthProvider implements IAuthProvider {
   }
 
   public async login(username: string, password: string) {
+    logger.info(username + " logging in");
     const user = await this.repository.findOne({"username": username});
 
     if (!user) {

@@ -16,5 +16,9 @@ export default {
     "key": fs.readFileSync("snakeoilkey.pem").toString(),
     "cert": fs.readFileSync("snakeoilcert.pem").toString(),
     "passphrase": "password"
+  },
+  "logstash": {
+    "host": 'localhost', 
+    "port": 5000
   }
 };
