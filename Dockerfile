@@ -2,7 +2,7 @@ FROM node:8
 
 WORKDIR /usr/src/app
 
-COPY ./* ./
+COPY ./ ./
 
 RUN npm install npm@5.6.0
 RUN rm -rf /usr/local/lib/node_modules/npm
