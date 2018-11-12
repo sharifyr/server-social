@@ -9,7 +9,7 @@
     "lint": "tslint --force 'src/**/*.ts' > ./tslint.err",
     "start": "npm run build && nodemon",
     "dockerstart": "npm install && npm run start",
-    "test": "export NODE_ENV=TEST && nyc --extension .ts --extension .tsx mocha --timeout 10000 -r ts-node/register ./test/*.ts && nyc report --reporter text-lcov --extension .ts --extension .tsx | coveralls"
+    "test": "export NODE_ENV=TEST && nyc --extension .ts mocha --exit --timeout 10000 -r ts-node/register ./test/*.ts && nyc report --reporter text-lcov --extension .ts --extension .tsx | coveralls"
   },
   "engines": {
     "node": "8.11.1"
