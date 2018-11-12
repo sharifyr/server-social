@@ -10,8 +10,6 @@ RUN mv node_modules/npm /usr/local/lib/node_modules/npm
 RUN npm -v
 RUN npm install
 
-COPY . .
-
 EXPOSE 80
 
 CMD [ "npm", "start"]
