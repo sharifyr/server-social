@@ -14,7 +14,10 @@ export interface ILogger {
 }
 
 const logstash = true;
+const projectName = "server-social";
 let log: bunyan;
+type LogLevel = number | "error" | "trace" | "debug" | "info" | "warn" | "fatal" | undefined;
+
 if (logstash) {
     const outStream = bunyanLumberjack({
         "tlsOptions": {
@@ -25,35 +28,30 @@ if (logstash) {
         "metadata": {"beat": "example", "type": "default"}
     });
 
+    log = bunyan.createLogger({
+        "name": projectName,
+        "src": true,
+        "streams": [{"level": "info", "type": "raw", "stream": outStream}]
+    });
     outStream.on("connect", () => {
-        log.info("Connected!");
+        log.info("Logger connected to stream");
     });
     outStream.on("dropped", (count: any) => {
-        log.info("ERROR: Dropped " + count + " messages!");
+        log.info("ERROR: Logger dropped " + count + " messages");
     });
     outStream.on("disconnect", (err: any) => {
-        log.info("WARN : Disconnected", err);
+        log.info("WARN : Logger disconnected", err);
     });
 
-    log = bunyan.createLogger({
-        "name": "myLog",
-        "streams": [{"level": "info", "type": "raw", "stream": outStream}]
+} else {
+    log =  bunyan.createLogger({
+        "name": projectName,
+        "level": config.logLevel as LogLevel,
+        "serializers": bunyan.stdSerializers,
+        "src": true
     });
 }
 
 export const Logger = (filename: string) => {
-
-    type LogLevel = number | "error" | "trace" | "debug" | "info" | "warn" | "fatal" | undefined;
-
-    if (logstash) {
-        return log;
-    } else {
-        log = bunyan.createLogger({
-            "name": filename,
-            "level": config.logLevel as LogLevel,
-            "serializers": bunyan.stdSerializers,
-            "src": true
-        });
-        return log;
-    }
+    return log;
 };

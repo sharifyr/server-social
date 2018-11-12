@@ -1,7 +1,5 @@
 import defaultConfig from "./local";
 import testConfig from "./test";
-import {ConnectionOptions} from "typeorm";
-import { ConnectionSingleton } from "../models/typeorm";
 
 export interface IJWT {
   "secret": string;

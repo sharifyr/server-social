@@ -18,7 +18,7 @@ export default {
     "passphrase": "password"
   },
   "logstash": {
-    "host": 'localhost', 
+    "host": "localhost",
     "port": 5000
   }
 };

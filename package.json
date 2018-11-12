@@ -4,12 +4,13 @@
   "description": "basic blank project setup. Hopefully saves you time configuring",
   "main": "index.js",
   "scripts": {
-    "swagger": "tsoa swagger && tsoa routes",
-    "build": "npm run swagger && npm run lint",
-    "lint": "tslint --force 'src/**/*.ts' > ./tslint.err",
     "start": "npm run build && nodemon",
-    "dockerstart": "npm install && npm run start",
-    "test": "export NODE_ENV=TEST && nyc --extension .ts mocha --exit --timeout 10000 -r ts-node/register ./test/*.ts && nyc report --reporter=teamcity --extension .ts "
+    "build": "npm run swagger && npm run lint",
+    "swagger": "tsoa swagger && tsoa routes",
+    "lint": "tslint --force 'src/**/*.ts' > ./tslint.err",
+    "test": "export NODE_ENV=TEST && npm run testrun && npm run testreport",
+    "testrun": "nyc --extension .ts mocha --exit --timeout 10000 -r ts-node/register ./test/*.ts",
+    "testreport": "nyc report --reporter=teamcity --extension .ts"
   },
   "engines": {
     "node": "8.11.1"
