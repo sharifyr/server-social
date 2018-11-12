@@ -11,12 +11,14 @@ import { config } from "./config";
 import { Logger } from "./util/logger";
 import {RegisterRoutes} from "./routes";
 
+const logger = Logger(path.basename(__filename));
+
+logger.info("starting with config: ", config);
+
 import "./controllers/tsoa/user";
 import "./controllers/tsoa/contactRequest";
 import "./controllers/tsoa/group";
 import "./controllers/tsoa/swagger";
-
-const logger = Logger(path.basename(__filename));
 
 IoC.configure();
 // establish the database connection

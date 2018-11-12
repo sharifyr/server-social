@@ -1,6 +1,7 @@
 import defaultConfig from "./local";
 import testConfig from "./test";
 import {ConnectionOptions} from "typeorm";
+import { ConnectionSingleton } from "../models/typeorm";
 
 export interface IJWT {
   "secret": string;
@@ -31,6 +32,7 @@ export interface IConfig {
   "sslOptions": ISSLOptions;
   "logstash": ILogstashOptions;
 }
+
 if (process && process.env && process.env.NODE_ENV) {
   const env = (process.env.NODE_ENV as string).trim();
   if (env === "DEV") {

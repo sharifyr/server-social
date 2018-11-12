@@ -10,6 +10,7 @@ import {Container} from "typescript-ioc";
 import {Connection} from "typeorm";
 
 const logger = Logger(path.basename(__filename));
+
 IoC.configure();
 // establish the database connection
 const connection = Container.get(Connection);
