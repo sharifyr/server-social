@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build && nodemon",
-    "build": "npm run swagger && npm run lint",
+    "build": "mkdir -p ./dist/src && npm run swagger && npm run lint",
     "swagger": "tsoa swagger && tsoa routes",
     "lint": "tslint --force 'src/**/*.ts' > ./tslint.err",
     "test": "export NODE_ENV=TEST && npm run testrun && npm run testreport",
