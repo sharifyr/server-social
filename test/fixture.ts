@@ -32,7 +32,7 @@ export class Fixture {
     public generateRandomUsers(count: number) {
       return Array
         .apply(null, Array(count))
-        .map((u: undefined) => this.generateRandomUserData());
+        .map((v: any, i: number, array: any[]) => this.generateRandomUserData());
     }
 
     public testUser1: IUserSerialized = {

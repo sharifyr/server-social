@@ -8,7 +8,7 @@
     "build": "mkdir -p ./dist/src && npm run swagger && npm run lint",
     "swagger": "tsoa swagger && tsoa routes",
     "lint": "tslint --force 'src/**/*.ts' > ./tslint.err",
-    "test": "export NODE_ENV=TEST && npm run testrun && npm run testreport",
+    "test": "export NODE_ENV=TEST",
     "testrun": "nyc --extension .ts mocha --exit --timeout 10000 -r ts-node/register ./test/*.ts",
     "testreport": "nyc report --reporter=teamcity --extension .ts"
   },
